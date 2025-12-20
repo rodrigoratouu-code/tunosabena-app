@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuNoSaBeNa</title>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(90deg, #440083, #00aeff, #00208b);
+      color: #333333f6;
+      padding: 2em;
+      min-height: 100vh;
+    }
+    header {
+      background-color: rgba(255, 255, 255, 0.103);
+      padding: 1em;
+      text-align: center;
+    }
+    #menu-toggle {
+      display: none;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      border-radius: 5px;
+      margin-bottom: 1em;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      margin: 0;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+      transition: all 0.3s ease;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #0077cc;
+    }
+    section {
+      padding: 2em;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 1em auto;
+      border-radius: 8px;
+      max-width: 900px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+    }
+    .video-item iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  border: none;
+}
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+      background: #000;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.863);
+    }
+    .redes a {
+      display: inline-block;
+      padding: 0.5em 1em;
+      background-color: #0077cc;
+      color: white;
+      border-radius: 5px;
+      margin-right: 0.5em;
+      margin-bottom: 0.5em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      font-size: 1em;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+    }
+    .redes a:hover {
+      background-color: #005fa3;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: rgba(255, 255, 255, 0.8);
+      font-size: 1em;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+    }
+    #galeria-videos {
+      padding: 2em 1em;
+      background-color: rgba(82, 127, 187, 0.9);
+      margin: 1em auto;
+      border-radius: 8px;
+      max-width: 900px;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+    }
+    .playlist audio {
+      width: 100%;
+      margin-bottom: 1em;
+      border-radius: 8px;
+      background-color: #e7e5e5;
+    }
+    @keyframes fadeInSlide {
+      0% { opacity: 0; transform: translateY(-30px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ff00cc, 0 0 10px #ff00cc, 0 0 15px #ff00cc;}
+      50% { text-shadow: 0 0 20px #ff00cc, 0 0 30px #ff00cc, 0 0 40px #ff00cc;}
+      100% { text-shadow: 0 0 5px #ff00cc, 0 0 10px #ff00cc, 0 0 15px #ff00cc;}
+    }
+    #galeria-videos h2 {
+      font-size: 2.2em;
+      color: #d8d2d2;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeInSlide 1s ease-out forwards;
+      transition: transform 0.3s ease, color 0.3s ease;
+      box-shadow: 0 6px 24px rgb(0, 0, 0);
+    }
+    #galeria-videos h2:hover {
+      animation: glow 1.5s infinite;
+      color: #ff00cc;
+      transform: scale(1.05);
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      section, #galeria-videos {
+        max-width: 98vw;
+        padding: 1.2em 0.5em;
+      }
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 0.5em;
+      }
+      header h1 {
+        font-size: 1.3em;
+      }
+      #menu-toggle {
+        display: block;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.5em;
+        display: none;
+        background: rgba(255,255,255,0.97);
+        position: absolute;
+        width: 90vw;
+        left: 5vw;
+        top: 60px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        z-index: 100;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      section, #galeria-videos {
+        margin: 0.5em 0;
+        padding: 1em 0.3em;
+      }
+      iframe {
+        height: 160px;
+      }
+      .redes a {
+        display: block;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TuNoSaBeNa</h1>
+    <button id="menu-toggle" aria-label="Abrir menú de navegación">☰ Menú</button>
+    <nav id="menu">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#galeria-videos">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2>Bienvenidos a TuNoSaBeNa</h2>
+    <p>Tu portal de servicios ciudadanos accesible desde cualquier dispositivo.</p>
+  </section>
+
+  <section id="servicios">
+    <h2>Servicios a la Ciudadanía</h2>
+    <ul>
+      <li>Trámites en línea</li>
+      <li>Consultas legales</li>
+      <li>Asistencia social</li>
+      <li>Educación y formación</li>
+    </ul>
+  </section>
+
+  <section id="galeria-videos">
+    <h2>🎥 MUSIC EDWIN</h2>
+    <p>Disfruta de estas canciones locales para celebrar</p>
+    <div class="playlist">
+      <div>
+        <h3>LATINO MIX 2023</h3>
+        <audio controls>
+          <source src="https://dl.dropboxusercontent.com/scl/fi/tzka46nhcclxieizxnn0i/LATINO-MIX-2023.mp3?rlkey=kpa8xwmaso8kdcm0j1zt6squd&st=f54ztlwt" type="audio/mpeg">
+          Tu navegador no soporta el audio.
+        </audio>
+      </div>
+      <div>
+        <h3>Salsa Vieja</h3>
+        <audio controls>
+          <source src="https://dl.dropboxusercontent.com/scl/fi/mxxv0bwdrz93cgqqlfrpt/Salsa-Vieja-MP3.mp3?rlkey=c5nrbj8j22ybjxxnxw98fm66d&st=rsec3mr0" type="audio/mpeg">
+          Tu navegador no soporta el audio.
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+  <h2>🎬 Videos Destacados</h2>
+  <div class="video-grid">
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/MRIOIJ_jzrc" title="Parranda Colombiana 24 Dic" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/XFQr4wC8Jpo" title="PARRANDA COLOMBIANA HQ" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/2XsWAoNcrFY" title="Tributo a la Salsa Colombiana" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/NNRpdg-dOao" title="Rey Ruiz Mix En Vivo" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/lPsZWia2Fdw" title="Salsa Brava y Dura Bailable" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/5VVihNIgGZA" title="Pop Latino 2025" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/AIATI3G1r0Q" title="Merengueton Capaz" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+
+  <section id="recomendacion-navegador">
+    <h2>🧭 Recomendación de Navegador</h2>
+    <p>Para una mejor experiencia, abre este sitio en <strong>Google Chrome</strong>, <strong>Mozilla Firefox</strong> o <strong>Microsoft Edge</strong>.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contáctanos</h2>
+    <div id="chat">
+      <p>Chat en vivo próximamente...</p>
+    </div>
+    <div class="redes">
+      <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TuNoSaBeNa. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Menú responsive para móviles
+    const menuToggle = document.getElementById('menu-toggle');
+    const navList = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('show');
+    });
+
+    // Animación de título MUSIC EDWIN al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      const h2 = document.querySelector('#galeria-videos h2');
+    });
+  </script>
+</body>
+</html>
